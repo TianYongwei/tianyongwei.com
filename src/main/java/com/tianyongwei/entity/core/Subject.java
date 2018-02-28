@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class Subject {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Subject  extends BaseEntity {
     private Long userId;
 
     private String name;

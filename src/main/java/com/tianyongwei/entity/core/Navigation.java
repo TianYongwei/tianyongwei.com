@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class Navigation {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Navigation extends BaseEntity {
     private Long userId;
 
     private String title;

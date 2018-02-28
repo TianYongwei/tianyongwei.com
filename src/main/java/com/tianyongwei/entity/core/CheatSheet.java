@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class CheatSheet {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class CheatSheet extends BaseEntity {
     private Long subjectId;
 
     private Long userId;
@@ -12,7 +19,7 @@ public class CheatSheet {
 
     private String answer;
 
-    private Long order;
+    private Long rank;
 
     private Boolean isTop;
 
@@ -58,12 +65,12 @@ public class CheatSheet {
         this.answer = answer;
     }
 
-    public Long getOrder() {
-        return order;
+    public Long getRank() {
+        return rank;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public Boolean getTop() {

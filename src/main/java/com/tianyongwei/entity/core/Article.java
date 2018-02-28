@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class Article {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Article extends BaseEntity{
 
     private Long subjectId;
 
@@ -10,7 +17,7 @@ public class Article {
 
     private String content;
 
-    private Long order;
+    private Long rank;
 
     private Boolean isTop;
 
@@ -48,12 +55,12 @@ public class Article {
         this.content = content;
     }
 
-    public Long getOrder() {
-        return order;
+    public Long getRank() {
+        return rank;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public Boolean getTop() {

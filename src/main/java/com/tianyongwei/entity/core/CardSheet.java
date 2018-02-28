@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class CardSheet {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class CardSheet  extends BaseEntity {
     private Long subjectId;
 
     private Long userId;

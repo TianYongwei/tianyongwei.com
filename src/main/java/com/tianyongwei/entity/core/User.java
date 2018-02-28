@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.core;
 
-public class User {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class User  extends BaseEntity {
     private String username;
 
     private String password;

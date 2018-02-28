@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.social;
 
-public class LikeCardSheet {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class LikeCardSheet extends BaseEntity {
     private Long userId;
 
     private Long cardSheetId;

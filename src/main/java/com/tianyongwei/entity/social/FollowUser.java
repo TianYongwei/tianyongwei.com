@@ -1,6 +1,13 @@
 package com.tianyongwei.entity.social;
 
-public class FollowUser {
+import com.tianyongwei.entity.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class FollowUser  extends BaseEntity {
     private Long userId;
 
     //被关注的用户
