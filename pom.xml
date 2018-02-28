@@ -11,6 +11,7 @@
 	<name>TianyongweiWebsite</name>
 	<description>tianyongwei's website</description>
 
+    <!--使用springboot-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
