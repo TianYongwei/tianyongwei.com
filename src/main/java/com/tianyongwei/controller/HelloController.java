@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     @RequestMapping("/")
-    @ResponseBody
     public String hello() {
-        return "hello";
+        return "index";
+    }
+
+    @RequestMapping("/1")
+    public String hello1() {
+        return "index-iviewui";
     }
 
 

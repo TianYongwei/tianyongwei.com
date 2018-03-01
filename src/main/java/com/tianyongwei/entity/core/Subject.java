@@ -14,7 +14,7 @@ public class Subject  extends BaseEntity {
 
     private String intro;
 
-    private Long order;
+    private Long rank;
 
     private Boolean isTop;
 
@@ -49,12 +49,12 @@ public class Subject  extends BaseEntity {
         this.intro = intro;
     }
 
-    public Long getOrder() {
-        return order;
+    public Long getRank() {
+        return rank;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public Boolean getTop() {

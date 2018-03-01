@@ -16,7 +16,7 @@ public class CardSheet  extends BaseEntity {
 
     private String answer;
 
-    private Long order;
+    private Long rank;
 
     private Boolean isTop;
 
@@ -56,12 +56,12 @@ public class CardSheet  extends BaseEntity {
         this.answer = answer;
     }
 
-    public Long getOrder() {
-        return order;
+    public Long getRank() {
+        return rank;
     }
 
-    public void setOrder(Long order) {
-        this.order = order;
+    public void setRank(Long rank) {
+        this.rank = rank;
     }
 
     public Boolean getTop() {

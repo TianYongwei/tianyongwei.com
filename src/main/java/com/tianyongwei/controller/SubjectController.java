@@ -6,26 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/article")
-public class ArticleController {
+@RequestMapping("/subject")
+public class SubjectController {
 
     @Autowired
     private ArticleRepo articleRepo;
 
     @RequestMapping("/list")
     public String list () {
-        return "article/list";
-    }
-
-    @RequestMapping("/add/{title}")
-    public String addArticle(@PathVariable String title) {
-        Article a = new Article();
-        a.setTitle(title);
-        a = articleRepo.save(a);
-        return a.getId() + ":" + a.getTitle();
+        return "subject/list";
     }
 
 
