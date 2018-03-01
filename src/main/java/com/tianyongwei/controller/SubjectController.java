@@ -19,5 +19,8 @@ public class SubjectController {
         return "subject/list";
     }
 
-
+    @RequestMapping("/add")
+    public String add() {
+        return "subject/add";
+    }
 }
