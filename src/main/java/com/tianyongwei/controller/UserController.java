@@ -12,11 +12,10 @@ public class UserController extends BaseController{
     //注册页面
     @RequestMapping("/add")
     public String addindex(Model model) {
-        model.addAttribute("","");
+        model.addAttribute("aaa","123");
         return "user/add";
     }
 
-    public
 
     //注册接口
 
