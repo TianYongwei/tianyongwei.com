@@ -13,20 +13,23 @@
 <body>
 <div class="container">
   <div class="row" style="margin-top:150px;">
-    <div class="col-md-12 offset-md-0 border rounded">
+    <div class="col-md-6 offset-md-3 border rounded">
       <nav class="navbar navbar-light border-bottom">
-        <a class="navbar-brand" href="#">主题速查</a>
+        <a class="navbar-brand" href="#">新建主题</a>
       </nav>
 
-      <div style="padding-bottom:15px;padding-top:15px;" class="d-flex justify-content-between align-items-center">
-        <div class="card text-center">
-          <div class="card-header bg-primary text-white border-bottom-0">
-            Building an App
+      <div style="padding-bottom:15px;padding-top:15px;">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">主题名称</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入主题名称...">
           </div>
-          <div class="card-body">
-            contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">主题简介</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="请输入主题简介...(300字以内)"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        </form>
       </div>
     </div>
   </div>
