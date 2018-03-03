@@ -1,20 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <title>tyw</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
 </head>
 <body>
 <div class="container">
-    <div class="row" style="height:500px;">
-        <div class="col-md-6 offset-md-3 bg-primary text-white border-success p-3 mh-50">
-            hello,world!
+    <div class="row" style="margin-top:150px;">
+        <div class="col-md-6 offset-md-3 border rounded">
+            <form style="padding:20px;">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">邮箱地址</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入邮箱地址...">
+                    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码...">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">确认密码</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="请输入确认密码...">
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
         </div>
     </div>
 </div>
