@@ -1,41 +1,85 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="/css/index.css">
+  <title>tyw</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
 </head>
 <body>
-<div id="app">
-    <el-row :gutter="20">
-        <el-col :span="8" :offset="8">
-            <div class="grid-content bg-purple">
-                <el-container>
-                    <el-header></el-header>
-                    <el-main>
-                        <el-button type="text">subject</el-button>
-                        <el-button type="text">navigation11222</el-button>
-                        <el-button type="text">cardsheet</el-button>
-                        <el-button type="text">article</el-button>
-                    </el-main>
-                    <el-footer></el-footer>
-                </el-container>
-            </div>
-        </el-col>
-    </el-row>
+<div class="container">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-light col-md-12">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">LY</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <div class="row" style="height:600px">
+    <div class="jumbotron col bg-light">
+      <h1 class="display-1">你的学习乐园</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </p>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-between">
+    <div class="card bg-warning" style="width: 16rem;">
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+      <div class="card-body">
+        <p class="card-text">导航</p>
+      </div>
+    </div>
+    <div class="card bg-warning" style="width: 16rem;">
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+      <div class="card-body">
+        <p class="card-text">速查</p>
+      </div>
+    </div>
+    <div class="card bg-warning" style="width: 16rem;">
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+      <div class="card-body">
+        <p class="card-text">卡片</p>
+      </div>
+    </div>
+    <div class="card bg-warning" style="width: 16rem;">
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+      <div class="card-body">
+        <p class="card-text">文章</p>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script>
-    new Vue({
-      el: '#app',
-      data: function() {
-        return { visible: false }
-      }
-    })
-  </script>
 </html>
