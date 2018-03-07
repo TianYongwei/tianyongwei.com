@@ -20,6 +20,16 @@ public class ArticleController {
         return "article/list";
     }
 
+    @RequestMapping("/read")
+    public String read() {
+        return "article/read";
+    }
+
+    @RequestMapping("/edit")
+    public String edit() {
+        return "article/edit";
+    }
+
     @RequestMapping("/add/{title}")
     public String addArticle(@PathVariable String title) {
         Article a = new Article();

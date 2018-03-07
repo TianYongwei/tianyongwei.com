@@ -10,10 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController extends BaseController{
 
     //注册页面
-    @RequestMapping("/add")
-    public String addindex(Model model) {
+    @RequestMapping("/signup")
+    public String signup(Model model) {
         model.addAttribute("aaa","123");
-        return "user/add";
+        return "user/signup";
+    }
+
+    //登录页面
+    @RequestMapping("/signin")
+    public String signin(Model model) {
+        model.addAttribute("aaa","123");
+        return "user/signin";
     }
 
 
