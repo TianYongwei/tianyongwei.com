@@ -19,6 +19,6 @@ public class CardController {
 
   @RequestMapping("/read")
   public String read() {
-    return "cheat/read";
+    return "card/read";
   }
 }
