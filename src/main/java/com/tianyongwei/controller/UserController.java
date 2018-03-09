@@ -5,21 +5,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
+
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController{
 
     //注册页面
     @RequestMapping("/signup")
-    public String signup(Model model) {
+    public String signup(Model model,HttpSession session) {
         model.addAttribute("aaa","123");
+        System.out.println(session.getAttribute("tyw") + "  ======");;
         return "user/signup";
     }
 
     //登录页面
     @RequestMapping("/signin")
-    public String signin(Model model) {
+    public String signin(Model model, HttpSession session) {
         model.addAttribute("aaa","123");
+        session.setAttribute("tyw", new Date().toString());
         return "user/signin";
     }
 
