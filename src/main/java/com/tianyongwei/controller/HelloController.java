@@ -4,18 +4,13 @@ import com.tianyongwei.utils.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class HelloController extends BaseController{
 
     @RequestMapping("/")
-    public String hello() {
+    public String hello(HttpServletResponse response) {
         return "index";
     }
-
-    @RequestMapping("/1")
-    public String hello1() {
-        return "index-iviewui";
-    }
-
-
 }
