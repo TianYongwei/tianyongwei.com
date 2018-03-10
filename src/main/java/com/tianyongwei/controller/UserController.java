@@ -32,6 +32,7 @@ public class UserController extends BaseController{
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
     private UserService userService;
 
     //注册页面
@@ -80,7 +81,7 @@ public class UserController extends BaseController{
 
         User user = userService.signup(email,psd1);
         System.out.println(user.getId());
-        return renderSuccess("注册成功");
+        return renderSuccess("http://mail." + email.split("@")[1]);
     }
 
     //登录页面

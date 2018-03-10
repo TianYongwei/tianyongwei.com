@@ -1,15 +1,13 @@
 package com.tianyongwei.utils;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.HtmlEmail;
+import org.apache.commons.mail.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class EmailUtil {
 
-    public static void sendSignupEmail(String destAddress ,String verifyCode) throws EmailException, MalformedURLException {
+    public static void sendSignupEmail_Html(String destAddress ,String verifyCode) throws EmailException, MalformedURLException {
 //        String verifyUrl = "http://localhost:8080/user/verify?email="+destAddress+"&vcode="+verifyCode;
         String verifyUrl = "http://bing.com";
 
@@ -37,7 +35,23 @@ public class EmailUtil {
         email.send();
     }
 
-    public static void main(String[] args) throws MalformedURLException, EmailException {
-        sendSignupEmail("869358189@qq.com","xxxxxx");
+    public static void sendSignupEmail_text(String destAddress ,String verifyCode) throws EmailException {
+
+        String verifyUrl = "http://localhost:8080/user/verify?email="+destAddress+"&vcode="+verifyCode;
+        Email email = new SimpleEmail();
+        email.setHostName("smtp.163.com");
+        email.setSmtpPort(25);
+        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "------"));
+        email.setSSLOnConnect(true);
+        email.setFrom("ityongwei@163.com");
+        email.setSubject("邮件验证");
+        email.setMsg("请访问下面地址进行验证邮箱:\n"+verifyUrl);
+        email.addTo(destAddress);
+        email.send();
     }
+
+//    public static void main(String[] args) throws MalformedURLException, EmailException {
+////        sendSignupEmail("869358189@qq.com","xxxxxx");
+//        sendSignupEmail_text("869358189@qq.com","xxxxxx");
+//    }
 }
