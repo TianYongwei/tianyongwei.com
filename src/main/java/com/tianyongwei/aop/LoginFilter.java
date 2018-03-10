@@ -25,7 +25,7 @@ public class LoginFilter {
               response = (HttpServletResponse) param;
           }
       }
-      response.sendRedirect("/user/signin");
+//      response.sendRedirect("/user/signin");
   }
 
 }
