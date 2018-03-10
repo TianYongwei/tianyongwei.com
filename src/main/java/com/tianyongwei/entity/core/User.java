@@ -31,6 +31,16 @@ public class User  extends BaseEntity {
 
     private Long viewCount;
 
+    private Boolean isVerified;
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(Boolean verified) {
+        isVerified = verified;
+    }
+
     public String getPhone() {
         return phone;
     }
