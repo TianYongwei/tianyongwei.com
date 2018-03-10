@@ -7,6 +7,7 @@ import com.tianyongwei.utils.BaseController;
 import com.tianyongwei.utils.JsonResult;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.digester.Digester;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,14 +78,8 @@ public class UserController extends BaseController{
             return renderError("长度需要在6-18位之间");
         }
 
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(DigestUtils.md5Hex("sa" + psd1 + "lt"));
-        user.setUsername(email);
-        user.setCreateTime(new java.sql.Date(new Date().getTime()));
-        user.setLevel("1");
-        userRepo.saveAndFlush(user);
-
+        User user = userService.signup(email,psd1);
+        System.out.println(user.getId());
         return renderSuccess("注册成功");
     }
 

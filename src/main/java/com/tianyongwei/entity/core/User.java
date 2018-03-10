@@ -4,6 +4,7 @@ import com.tianyongwei.entity.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table
@@ -32,6 +33,16 @@ public class User  extends BaseEntity {
     private Long viewCount;
 
     private Boolean isVerified;
+
+    private Date verifiedTime;
+
+    public Date getVerifiedTime() {
+        return verifiedTime;
+    }
+
+    public void setVerifiedTime(Date verifiedTime) {
+        this.verifiedTime = verifiedTime;
+    }
 
     public Boolean getVerified() {
         return isVerified;
