@@ -8,7 +8,7 @@ import java.net.URL;
 public class EmailUtil {
 
     public static void sendSignupEmail_Html(String destAddress ,String verifyCode) throws EmailException, MalformedURLException {
-//        String verifyUrl = "http://localhost:8080/user/verify?email="+destAddress+"&vcode="+verifyCode;
+//        String verifyUrl = "http://localhost:8080/user/emailverify?email="+destAddress+"&vcode="+verifyCode;
         String verifyUrl = "http://bing.com";
 
         // Create the email message
@@ -37,11 +37,11 @@ public class EmailUtil {
 
     public static void sendSignupEmail_text(String destAddress ,String verifyCode) throws EmailException {
 
-        String verifyUrl = "http://localhost:8080/user/verify?email="+destAddress+"&vcode="+verifyCode;
+        String verifyUrl = "http://localhost:8080/user/emailverify?email="+destAddress+"&vcode="+verifyCode;
         Email email = new SimpleEmail();
         email.setHostName("smtp.163.com");
         email.setSmtpPort(25);
-        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "------"));
+        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "tyw123456"));
         email.setSSLOnConnect(true);
         email.setFrom("ityongwei@163.com");
         email.setSubject("邮件验证");

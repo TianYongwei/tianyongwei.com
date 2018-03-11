@@ -55,18 +55,33 @@ public class UserServiceImpl implements UserService {
         user.setEmail(email);
         user.setPassword(DigestUtils.md5Hex("sa" + psd1 + "lt"));
         user.setUsername(email);
-        user.setCreateTime(new java.sql.Date(new Date().getTime()));
+        user.setCreateTime(new DateTime().getMillis());
         user.setLevel("1");
         user.setvCode(randomCode);
         user.setVerified(false);
-        user.setVerifiedTime(new java.sql.Date(new DateTime().plusMinutes(5).getMillis()));
+        user.setVerifiedTime(new DateTime().plusMinutes(5).getMillis());
         user = userRepo.saveAndFlush(user);
         return user;
     }
 
-    public static void main(String[] args) {
-        DateTime dt = new DateTime().plusMinutes(5);
-        System.out.println(dt.getMillis());
+    @Override
+    public Integer emailVerify(String email, String vcode) {
+        List<User> users = userRepo.findByEmail(email);
+        if(users.size() > 1) {
+            throw new IllegalStateException("一个邮箱查出多于一个账户");
+        } else if(users.size() == 0) {
+            return 0;//无此用户
+        } else {
+            User user = users.get(0);
+            DateTime dt = new DateTime();
 
+            if(!vcode.equals(user.getvCode())) {
+                return 1;//验证码不对
+            } else if(dt.isAfter(user.getVerifiedTime())) {
+                return 2;//验证码过期
+            } else {
+                return 3;//成功
+            }
+        }
     }
 }

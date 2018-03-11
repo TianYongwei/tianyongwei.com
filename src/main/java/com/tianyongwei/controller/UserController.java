@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,10 +85,30 @@ public class UserController extends BaseController{
         return renderSuccess("http://mail." + email.split("@")[1]);
     }
 
+    @RequestMapping(value = "/emailverify")
+    public String verify_post(Model model , @RequestParam String email, @RequestParam String vcode) {
+        /**
+         * 0、没有这条记录
+         * 1、验证码错误
+         * 2、验证码过期
+         * 3、验证成功
+         */
+        Integer code = userService.emailVerify(email, vcode);
+        if(code == 0) {
+            model.addAttribute("message","没有这条记录");
+        } else if (code == 1) {
+            model.addAttribute("message","验证码错误");
+        } else if (code == 2) {
+            model.addAttribute("message","验证码过期");
+        } else if (code == 3) {
+            model.addAttribute("message","验证成功");
+        }
+        return "user/emailverify";
+    }
+
     //登录页面
     @RequestMapping("/signin")
     public String signin(Model model, HttpSession session ,HttpServletResponse response) {
-        model.addAttribute("aaa","123");
 //        session.setAttribute("tyw", new Date().toString());
         return "user/signin";
     }

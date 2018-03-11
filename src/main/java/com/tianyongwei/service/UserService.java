@@ -7,4 +7,6 @@ public interface UserService {
     boolean hasSignupByEmail(String email);
 
     User signup(String email, String psd1);
+
+    Integer emailVerify(String email, String vcode);
 }

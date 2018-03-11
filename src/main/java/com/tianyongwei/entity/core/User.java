@@ -2,6 +2,7 @@ package com.tianyongwei.entity.core;
 
 import com.tianyongwei.entity.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Date;
@@ -32,15 +33,16 @@ public class User  extends BaseEntity {
 
     private Long viewCount;
 
+    @Column(columnDefinition="tinyint(1)")
     private Boolean isVerified;
 
-    private Date verifiedTime;
+    private Long verifiedTime;
 
-    public Date getVerifiedTime() {
+    public Long getVerifiedTime() {
         return verifiedTime;
     }
 
-    public void setVerifiedTime(Date verifiedTime) {
+    public void setVerifiedTime(Long verifiedTime) {
         this.verifiedTime = verifiedTime;
     }
 

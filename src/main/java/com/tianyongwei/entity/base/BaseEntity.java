@@ -1,10 +1,10 @@
 package com.tianyongwei.entity.base;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import org.joda.time.DateTime;
+
+import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @MappedSuperclass
 public class BaseEntity {
@@ -13,19 +13,21 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date createTime;
+    private Long createTime;
 
-    private Date updateTime;
+    private Long updateTime;
 
     private Long createUser;
 
     private Long updateUser;
 
     //逻辑删除
-    private Boolean isDrop;
+    @Column(columnDefinition="tinyint(1)")
+    private Boolean isDrop = false;
 
     //上下架
-    private Boolean isShangjia;
+    @Column(columnDefinition="tinyint(1)")
+    private Boolean isShangjia = true;
 
     public Long getId() {
         return id;
@@ -35,19 +37,19 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
 

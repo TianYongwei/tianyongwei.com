@@ -65,11 +65,14 @@ var app = new Vue({
         psd1:this.psd1,
         psd2:this.psd2
       }, {emulateJSON: true}).then(response => {
-        if(response.body.status) {
+      console.log(response.body)
+        if(response.body.success) {
             this.successShow = true;
+            this.errorShow = false;
             this.message = response.body.msg;
         } else {
             this.errorShow = true;
+            this.successShow = false;
             this.message = response.body.msg;
         }
       }, response => {
