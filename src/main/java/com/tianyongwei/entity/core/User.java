@@ -5,7 +5,6 @@ import com.tianyongwei.entity.base.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.sql.Date;
 
 @Entity
 @Table
@@ -37,6 +36,38 @@ public class User  extends BaseEntity {
     private Boolean isVerified;
 
     private Long verifiedTime;
+
+    //重置邮箱验证码
+    private String psdResetCode;
+
+    @Column(columnDefinition="tinyint(1)")
+    private Boolean psdResetVerified;
+
+    private Long psdResetVerifiedTime;
+
+    public String getPsdResetCode() {
+        return psdResetCode;
+    }
+
+    public void setPsdResetCode(String psdResetCode) {
+        this.psdResetCode = psdResetCode;
+    }
+
+    public Boolean getPsdResetVerified() {
+        return psdResetVerified;
+    }
+
+    public void setPsdResetVerified(Boolean psdResetVerified) {
+        this.psdResetVerified = psdResetVerified;
+    }
+
+    public Long getPsdResetVerifiedTime() {
+        return psdResetVerifiedTime;
+    }
+
+    public void setPsdResetVerifiedTime(Long psdResetVerifiedTime) {
+        this.psdResetVerifiedTime = psdResetVerifiedTime;
+    }
 
     public Long getVerifiedTime() {
         return verifiedTime;

@@ -5,9 +5,6 @@ import com.tianyongwei.repo.UserRepo;
 import com.tianyongwei.service.UserService;
 import com.tianyongwei.utils.BaseController;
 import com.tianyongwei.utils.JsonResult;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.digester.Digester;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/user")
@@ -108,10 +101,77 @@ public class UserController extends BaseController{
 
     //登录页面
     @RequestMapping("/signin")
-    public String signin(Model model, HttpSession session ,HttpServletResponse response) {
-//        session.setAttribute("tyw", new Date().toString());
+    public String signin() {
         return "user/signin";
     }
+
+    //登录页面
+    @RequestMapping(value = "/signin",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult signin_post(HttpSession session, HttpServletResponse response , @RequestParam String email, @RequestParam String password) {
+        session.setAttribute("tyw", new Date().toString());
+        User user = userService.signin(email,password);
+        if(user != null) {
+            return renderSuccess("登录成功");
+        } else {
+            return renderError("账号或密码错误");
+        }
+    }
+
+    //重置密码页面
+    @RequestMapping("/findpsd")
+    public String findpsd() {
+        return "user/findpsd";
+    }
+
+    //重置密码页面
+    @RequestMapping(value = "/findpsd", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult findpsd(@RequestParam String email) {
+        Integer code = userService.findpsd(email);
+        if(code == 0) {
+            return renderError("无此账号");
+        } else {
+            return renderSuccess("重置链接已经发送，请前往邮箱重置！");
+        }
+    }
+
+    @RequestMapping("/psdresetverify")
+    public String psdresetverify (Model model,@RequestParam String email , @RequestParam("vcode") String psdresetCode) {
+        model.addAttribute("psdresetCode",psdresetCode);
+        model.addAttribute("email",email);
+        return "user/psdreset";
+    }
+
+    @RequestMapping(value = "/psdresetverify",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult psdresetverify_post (@RequestParam String email ,
+                                           @RequestParam String psdresetCode,
+                                           @RequestParam String psd1,
+                                           @RequestParam String psd2) {
+        /**
+         * 1、密码重置成功
+         * 2、验证码过期
+         * 3、两次密码不一致
+         */
+        if(StringUtils.isEmpty(psd1) || StringUtils.isEmpty(psd2)) {
+            return renderError("密码为空");
+        }
+        if(!psd1.equals(psd2)) {
+            return renderError("密码不一致");
+        }
+        if(!userService.psdRestCodeIsValid(email,psdresetCode)) {
+            return renderError("验证码无效");
+        }
+        userService.psdReset(email,psd1);
+        return renderSuccess("重置密码成功");
+    }
+
+
+
+
+
+
 
 
     //注册接口

@@ -41,11 +41,25 @@ public class EmailUtil {
         Email email = new SimpleEmail();
         email.setHostName("smtp.163.com");
         email.setSmtpPort(25);
-        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "-------"));
+        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "tyw123456"));
         email.setSSLOnConnect(true);
         email.setFrom("ityongwei@163.com");
         email.setSubject("邮件验证");
         email.setMsg("请访问下面地址进行验证邮箱:\n"+verifyUrl);
+        email.addTo(destAddress);
+        email.send();
+    }
+
+    public static void sendPsdResetEmail_text(String destAddress, String verifyCode) throws EmailException {
+        String verifyUrl = "http://localhost:8080/user/psdresetverify?email="+destAddress+"&vcode="+verifyCode;
+        Email email = new SimpleEmail();
+        email.setHostName("smtp.163.com");
+        email.setSmtpPort(25);
+        email.setAuthenticator(new DefaultAuthenticator("ityongwei", "tyw123456"));
+        email.setSSLOnConnect(true);
+        email.setFrom("ityongwei@163.com");
+        email.setSubject("邮件验证");
+        email.setMsg("请访问下面地址进行重置密码:\n"+verifyUrl);
         email.addTo(destAddress);
         email.send();
     }

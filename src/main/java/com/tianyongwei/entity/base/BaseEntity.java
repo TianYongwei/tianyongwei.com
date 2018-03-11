@@ -1,10 +1,6 @@
 package com.tianyongwei.entity.base;
 
-import org.joda.time.DateTime;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 @MappedSuperclass
 public class BaseEntity {

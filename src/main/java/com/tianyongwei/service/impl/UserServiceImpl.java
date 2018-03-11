@@ -11,7 +11,6 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -83,5 +82,73 @@ public class UserServiceImpl implements UserService {
                 return 3;//成功
             }
         }
+    }
+
+    @Override
+    public User signin(String email, String password) {
+        List<User> users = userRepo.findByEmail(email);
+        if(users.size() == 1) {
+            User user = users.get(0);
+            System.out.println(DigestUtils.md5Hex("sa" + password + "lt"));
+            if(user.getPassword().equals(DigestUtils.md5Hex("sa" + password + "lt"))) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Integer findpsd(String email) {
+        List<User> users = userRepo.findByEmail(email);
+//        System.out.println(users.size() + " " + email);
+        if(users.size() == 1) {
+            String randomCode = RandomStringUtils.randomAlphanumeric(5);
+            try {
+                EmailUtil.sendPsdResetEmail_text(email,randomCode);
+            } catch (EmailException e) {
+                e.printStackTrace();
+            }
+            User user = users.get(0);
+            user.setPsdResetCode(randomCode);
+            user.setPsdResetVerified(false);
+            user.setPsdResetVerifiedTime(new DateTime().plusMinutes(5).getMillis());
+            userRepo.saveAndFlush(user);
+            return 1;//成功
+        }
+        return 0;//失败
+    }
+
+    @Override
+    public boolean psdRestCodeIsValid(String email, String psdresetCode) {
+        List<User> users = userRepo.findByEmail(email);
+        if(users.size() != 1) {
+            return false;
+        }
+        User user = users.get(0);
+        if(!user.getPsdResetVerified()) {
+            if(user.getPsdResetCode().equals(psdresetCode)) {
+                if(new DateTime().isBefore(user.getPsdResetVerifiedTime())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void psdReset(String email, String psd1) {
+        User user = userRepo.findByEmail(email).get(0);
+        user.setPassword(DigestUtils.md5Hex("sa"+psd1+"lt"));
+        user.setPsdResetVerified(true);
+        userRepo.saveAndFlush(user);
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
+        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
+        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
+        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
+
     }
 }
