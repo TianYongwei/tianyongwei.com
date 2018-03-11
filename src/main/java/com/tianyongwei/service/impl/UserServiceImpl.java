@@ -79,6 +79,8 @@ public class UserServiceImpl implements UserService {
             } else if(dt.isAfter(user.getVerifiedTime())) {
                 return 2;//验证码过期
             } else {
+                user.setVerified(true);
+                userRepo.saveAndFlush(user);
                 return 3;//成功
             }
         }
@@ -100,7 +102,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer findpsd(String email) {
         List<User> users = userRepo.findByEmail(email);
-//        System.out.println(users.size() + " " + email);
         if(users.size() == 1) {
             String randomCode = RandomStringUtils.randomAlphanumeric(5);
             try {
@@ -143,12 +144,4 @@ public class UserServiceImpl implements UserService {
         userRepo.saveAndFlush(user);
     }
 
-    public static void main(String[] args) {
-
-        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
-        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
-        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
-        System.out.println(DigestUtils.md5Hex("sa" + "111111"+ "lt"));
-
-    }
 }

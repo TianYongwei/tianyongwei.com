@@ -10,11 +10,9 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -99,25 +97,6 @@ public class UserController extends BaseController{
         return "user/emailverify";
     }
 
-    //登录页面
-    @RequestMapping("/signin")
-    public String signin() {
-        return "user/signin";
-    }
-
-    //登录页面
-    @RequestMapping(value = "/signin",method = RequestMethod.POST)
-    @ResponseBody
-    public JsonResult signin_post(HttpSession session, HttpServletResponse response , @RequestParam String email, @RequestParam String password) {
-        session.setAttribute("tyw", new Date().toString());
-        User user = userService.signin(email,password);
-        if(user != null) {
-            return renderSuccess("登录成功");
-        } else {
-            return renderError("账号或密码错误");
-        }
-    }
-
     //重置密码页面
     @RequestMapping("/findpsd")
     public String findpsd() {
@@ -167,24 +146,25 @@ public class UserController extends BaseController{
         return renderSuccess("重置密码成功");
     }
 
-
-
-
-
-
-
-
-    //注册接口
+    //登录页面
+    @RequestMapping("/signin")
+    public String signin() {
+        return "user/signin";
+    }
 
     //登录页面
-
-    //登录接口
-
-    //修改密码页面
-
-    //修改密码接口
-
-    //用户查询接口
-
-    //用户列表接口（分页）
+    @RequestMapping(value = "/signin",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult signin_post(@CookieValue String test, HttpSession session, HttpServletResponse response , @RequestParam String email, @RequestParam String password) {
+//        System.out.println(test);
+//        session.setAttribute("tyw", new Date().toString());
+        User user = userService.signin(email,password);
+        Cookie cookie = new Cookie("test",test+"1");
+        response.addCookie(cookie);
+        if(user != null) {
+            return renderSuccess("登录成功");
+        } else {
+            return renderError("账号或密码错误");
+        }
+    }
 }
