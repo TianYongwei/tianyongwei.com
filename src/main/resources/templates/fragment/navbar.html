@@ -1,0 +1,63 @@
+<div class="row" id="navbar">
+  <nav class="navbar navbar-expand-lg navbar-light col-md-12">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">角落</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">首页 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/subject/list">主题列表</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">广场</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="oi oi-magnifying-glass"></span></button>
+        <a class="btn btn-warning my-2 my-sm-0 ml-1" href="/user/signin">登录</a>
+        <a class="btn btn-light my-2 my-sm-0 ml-1" href="/user/signup">注册</a>
+      </form>
+    </div>
+  </nav>
+  <script>
+    var app = new Vue({
+      el: '#navbar',
+      data: {
+        email: '',
+        password:'',
+        message:'',
+        successShow:false,
+        errorShow:false
+      },
+      methods: {
+        signinCheck: function () {
+          this.$http.post('/user/signin', {
+            email:this.email,
+            password:this.password
+          }, {emulateJSON: true}).then(response => {
+            console.log(response.body)
+            if(response.body.success) {
+                this.successShow = true;
+                this.errorShow = false;
+                this.message = response.body.msg;
+            } else {
+                this.errorShow = true;
+                this.successShow = false;
+                this.message = response.body.msg;
+            }
+          }, response => {
+            this.errorShow = true;
+            this.successShow = false;
+            this.message = '网络异常'
+          });
+        }
+      }
+    })
+  </script>
+</div>
