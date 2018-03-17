@@ -31,9 +31,30 @@
       data: {
         email: '',
         password:'',
-        message:'',
+        message:'message123',
         successShow:false,
         errorShow:false
+      },
+      created: function () {
+        this.$http.post('/user/info', {
+            id:1
+          }, {emulateJSON: true}).then(response => {
+            console.log(response.body)
+            if(response.body.success) {
+                this.$session.set("testkey","testval");s
+                this.successShow = true;
+                this.errorShow = false;
+                this.message = response.body.msg;
+            } else {
+                this.errorShow = true;
+                this.successShow = false;
+                this.message = response.body.msg;
+            }
+          }, response => {
+            this.errorShow = true;
+            this.successShow = false;
+            this.message = '网络异常'
+          });
       },
       methods: {
         signinCheck: function () {

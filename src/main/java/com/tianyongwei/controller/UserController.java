@@ -167,4 +167,11 @@ public class UserController extends BaseController{
             return renderError("账号或密码错误");
         }
     }
+
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult info(@RequestParam String id, HttpSession session) {
+        System.out.println(session.getAttribute("testkay"));
+        return renderSuccess("success");
+    }
 }
