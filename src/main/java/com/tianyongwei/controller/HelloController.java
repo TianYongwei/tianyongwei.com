@@ -14,16 +14,11 @@ public class HelloController extends BaseController{
 
     @RequestMapping("/")
     public String hello(HttpServletRequest request,HttpServletResponse response, HttpSession session) {
-        session.setAttribute("tyw","anything");
         System.out.println(session.getId());
-        Cookie cookie = new Cookie("tyw","tywvalue");
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
-        Cookie cookie1 = new Cookie("ssss","123123123");
-        cookie1.setHttpOnly(true);
-        response.addCookie(cookie1);
-        System.out.println(request.getCookies()[0].getValue());
-        System.out.println(request.getCookies()[1].getValue());
+        session.setAttribute("test","test2");
+        session.setMaxInactiveInterval(5);
+        session = request.getSession();
+        System.out.println(session.getId());
         return "index";
     }
 

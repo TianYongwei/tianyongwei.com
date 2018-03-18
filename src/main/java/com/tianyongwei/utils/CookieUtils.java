@@ -3,6 +3,7 @@ package com.tianyongwei.utils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CookieUtils {
 
-  public static final int COOKIE_MAX_AGE = 7 * 24 * 3600;
+  public static final int COOKIE_A_WEEK = 7 * 24 * 3600;
+  public static final int COOKIE_3_DAY = 3 * 24 * 3600;
   public static final int COOKIE_HALF_HOUR = 30 * 60;
 
   /**
@@ -24,7 +26,7 @@ public class CookieUtils {
    */
   public static Cookie getCookie(HttpServletRequest request, String name) {
     Cookie[] cookies = request.getCookies();
-    if (StringUtils.isEmpty(cookies)) {
+    if (cookies == null || cookies.length == 0) {
       return null;
     }
     Cookie cookie = null;
@@ -82,7 +84,7 @@ public class CookieUtils {
    */
   public static void setCookie(HttpServletResponse response, String name,
                                String value, int maxValue) {
-    if (StrUtils.isBlank(name)) {
+    if (StringUtils.isBlank(name)) {
       return;
     }
     if (null == value) {
@@ -123,7 +125,7 @@ public class CookieUtils {
   public static Map<String,Cookie> getCookieMap(HttpServletRequest request){
     Map<String,Cookie> cookieMap = new HashMap<String,Cookie>();
     Cookie[] cookies = request.getCookies();
-    if(!StrUtils.isEmptyArray(cookies)){
+    if(null != cookies && cookies.length != 0){
       for(Cookie cookie : cookies){
         cookieMap.put(cookie.getName(), cookie);
       }

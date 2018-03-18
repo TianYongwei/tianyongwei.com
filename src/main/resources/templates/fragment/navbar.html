@@ -41,7 +41,9 @@
           }, {emulateJSON: true}).then(response => {
             console.log(response.body)
             if(response.body.success) {
-                this.$session.set("testkey","testval");s
+
+                this.$session.start()
+                this.$session.set('tyw', 'testtest')
                 this.successShow = true;
                 this.errorShow = false;
                 this.message = response.body.msg;

@@ -1,4 +1,4 @@
-package com.tianyongwei.aop;
+package com.tianyongwei.config.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

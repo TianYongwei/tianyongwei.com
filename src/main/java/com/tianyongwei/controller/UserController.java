@@ -171,7 +171,7 @@ public class UserController extends BaseController{
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult info(@RequestParam String id, HttpSession session) {
-        System.out.println(session.getAttribute("testkay"));
+//        System.out.println(session.getAttribute("tyw"));
         return renderSuccess("success");
     }
 }
