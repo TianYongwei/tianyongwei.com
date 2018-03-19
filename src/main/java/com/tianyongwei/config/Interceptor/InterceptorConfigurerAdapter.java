@@ -10,7 +10,7 @@ public class InterceptorConfigurerAdapter extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         // addPathPatterns 添加路径
         // excludePathPatterns 排除路径
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/*");
+        registry.addInterceptor(new PermissionInterceptor()).addPathPatterns("/*");
         super.addInterceptors(registry);
     }
 }
