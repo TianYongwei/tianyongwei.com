@@ -28,4 +28,10 @@ public class MyWebUtil {
     public static void saveUser2Session (User user) {
         getSession().setAttribute("user",user);
     }
+
+    public static Boolean isCurrentUser(User user) {
+        if(user == null) return false;
+        if(getCurrentUser() == null) return false;
+        return user.getId() == getCurrentUser().getId();
+    }
 }

@@ -40,6 +40,10 @@ public class User  extends BaseEntity {
     //重置邮箱验证码
     private String psdResetCode;
 
+    User(Long id) {
+        super.setId(id);
+    }
+
     @Column(columnDefinition="tinyint(1)")
     private Boolean psdResetVerified;
 
