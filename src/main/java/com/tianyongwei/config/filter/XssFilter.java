@@ -13,11 +13,13 @@ public class XssFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("过滤器生效了...");
         chain.doFilter(request,response);
     }
 
     @Override
     public void destroy() {
+        System.out.println("过滤器销毁了...");
 
     }
 }

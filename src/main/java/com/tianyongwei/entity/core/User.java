@@ -40,7 +40,10 @@ public class User  extends BaseEntity {
     //重置邮箱验证码
     private String psdResetCode;
 
-    User(Long id) {
+    public User() {
+    }
+
+    public User(Long id) {
         super.setId(id);
     }
 
