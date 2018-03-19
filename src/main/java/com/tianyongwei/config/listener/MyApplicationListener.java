@@ -11,8 +11,5 @@ import org.springframework.context.ApplicationListener;
 public class MyApplicationListener implements ApplicationListener {
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        System.out.println(event.getTimestamp());
-        System.out.println("applicationlinster 开始。。。");
-
     }
 }

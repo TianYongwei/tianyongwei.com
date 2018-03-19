@@ -6,17 +6,15 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-@WebListener
+//@WebListener
 public class MyServletContextListener implements ServletContextListener {
 
-    public void contextDestroyed(ServletContextEvent arg0) {
+    public void contextDestroyed(ServletContextEvent sce) {
         // TODO Auto-generated method stub
-        System.out.println("ServletContext销毁....");
     }
 
-    public void contextInitialized(ServletContextEvent arg0) {
+    public void contextInitialized(ServletContextEvent sce) {
         // TODO Auto-generated method stub
-        System.out.println("ServletContext初始化...");
     }
 
 }

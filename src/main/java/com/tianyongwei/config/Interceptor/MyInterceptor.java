@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * http://blog.csdn.net/gfd54gd5f46/article/details/75022305
+ * 参考文章：
+ * 1、csdn: http://blog.csdn.net/gfd54gd5f46/article/details/75022305
+ * 2、自己的知乎回答：https://www.zhihu.com/question/35225845/answer/345131918
  */
-public class MyFirstInterceptor implements HandlerInterceptor {
+public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return false;
+        return true;//返回true则继续向下执行，返回false则取消当前请求
     }
 
     @Override
