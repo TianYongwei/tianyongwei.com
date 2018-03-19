@@ -2,14 +2,12 @@ package com.tianyongwei.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
-import java.net.HttpCookie;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CookieUtils {
 
