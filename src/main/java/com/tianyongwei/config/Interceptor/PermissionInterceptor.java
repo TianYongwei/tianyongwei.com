@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 public class PermissionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("拦截器开始执行....");
         return true;//返回true则继续向下执行，返回false则取消当前请求
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
+        System.out.println("拦截器执行中");
     }
 
     @Override
