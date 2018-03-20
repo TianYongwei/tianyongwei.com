@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloController extends BaseController{
 
     @RequestMapping("/")
-    public String hello(s) {
+    public String hello() {
         return "index";
     }
 
