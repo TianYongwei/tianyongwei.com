@@ -64,6 +64,7 @@ var app = new Vue({
             this.successShow = true;
             this.errorShow = false;
             this.message = response.body.msg;
+            window.location.href="/";
         } else {
             this.errorShow = true;
             this.successShow = false;

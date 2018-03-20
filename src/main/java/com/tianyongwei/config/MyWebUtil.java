@@ -29,6 +29,10 @@ public class MyWebUtil {
         getSession().setAttribute("user",user);
     }
 
+    public static void removeUserFromSession () {
+        getSession().removeAttribute("user");
+    }
+
     public static Boolean isCurrentUser(User user) {
         if(user == null) return false;
         if(getCurrentUser() == null) return false;

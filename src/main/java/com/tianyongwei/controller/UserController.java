@@ -1,5 +1,6 @@
 package com.tianyongwei.controller;
 
+import com.tianyongwei.config.MyWebUtil;
 import com.tianyongwei.entity.core.User;
 import com.tianyongwei.repo.UserRepo;
 import com.tianyongwei.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -154,13 +156,12 @@ public class UserController extends BaseController{
     //登录页面
     @RequestMapping(value = "/signin",method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult signin_post(@CookieValue String test, HttpSession session, HttpServletResponse response , @RequestParam String email, @RequestParam String password) {
-//        System.out.println(test);
-//        session.setAttribute("tyw", new Date().toString());
+    public JsonResult signin_post(@RequestParam String email, @RequestParam String password) {
         User user = userService.signin(email,password);
-        Cookie cookie = new Cookie("test",test+"1");
-        response.addCookie(cookie);
+        User sessionuser = new User(user.getId());
+        sessionuser.setUsername(user.getUsername());
         if(user != null) {
+            MyWebUtil.saveUser2Session(sessionuser);
             return renderSuccess("登录成功");
         } else {
             return renderError("账号或密码错误");
@@ -169,8 +170,23 @@ public class UserController extends BaseController{
 
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult info(@RequestParam String id, HttpSession session) {
-//        System.out.println(session.getAttribute("tyw"));
+    public JsonResult info(@RequestParam String id) {
         return renderSuccess("success");
+    }
+
+    @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult checkLogin() {
+        if(MyWebUtil.getCurrentUser() != null) {
+            return renderSuccess(MyWebUtil.getCurrentUser());
+        }
+        return renderError();
+    }
+
+    @RequestMapping(value = "/signout", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult signOut () {
+        MyWebUtil.removeUserFromSession();
+        return renderSuccess("安全退出");
     }
 }
