@@ -34,7 +34,8 @@ public class SubjectController  extends BaseController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
     public JsonResult add_post(@RequestParam String name, @RequestParam String intro) {
-        subjectService.add(name, intro, MyWebUtil.getCurrentUser().getId());
-        return renderSuccess();
+        Long id = subjectService.add(name, intro, MyWebUtil.getCurrentUser().getId());
+        if(id == null) {return renderError("新建专题失败！");}
+        return renderSuccess("新建专题成功！", id);
     }
 }
