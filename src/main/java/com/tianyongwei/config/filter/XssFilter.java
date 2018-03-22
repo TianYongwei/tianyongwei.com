@@ -6,7 +6,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Enumeration;
 
 /**
  * 要想让过滤器生效必须加上@Component，加入spring管理
