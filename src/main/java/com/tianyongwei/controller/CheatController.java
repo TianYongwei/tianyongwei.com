@@ -13,9 +13,9 @@ public class CheatController extends BaseController {
     return "cheat/list";
   }
 
-  @RequestMapping("/add")
+  @RequestMapping("/edit")
   public String add() {
-    return "cheat/add";
+    return "cheat/edit";
   }
 
   @RequestMapping("/read")

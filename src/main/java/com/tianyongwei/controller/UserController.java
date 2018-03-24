@@ -159,9 +159,10 @@ public class UserController extends BaseController{
     @ResponseBody
     public JsonResult signin_post(@RequestParam String email, @RequestParam String password) {
         User user = userService.signin(email,password);
-        User sessionUser = new User(user.getId());
-        sessionUser.setUsername(user.getUsername());
+
         if(user != null) {
+            User sessionUser = new User(user.getId());
+            sessionUser.setUsername(user.getUsername());
             MyWebUtil.saveUser2Session(sessionUser);
             return renderSuccess("登录成功");
         } else {
