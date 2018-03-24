@@ -6,6 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SubjectRepo extends JpaRepository<Subject, Long> {
-
-    Page<Subject> findByUserId(Long id, Pageable pageable);
+    Page<Subject> findByUserIdAndIsDrop(Long id, boolean b, Pageable pageable);
 }

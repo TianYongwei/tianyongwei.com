@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/subject")
 public class SubjectController  extends BaseController {
@@ -45,7 +47,7 @@ public class SubjectController  extends BaseController {
     @ResponseBody
     public JsonResult list_post (@PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC)
                                          Pageable pageable) {
-        Page<Subject> page = subjectService.findAll(pageable);
+        Page<Subject> page = subjectService.mySubjectList(pageable);
         return renderSuccess(page);
     }
 

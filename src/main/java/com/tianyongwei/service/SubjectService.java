@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubjectService {
 
@@ -30,15 +32,18 @@ public class SubjectService {
 
     public Page<Subject> mySubjectList(Pageable pageable) {
         System.out.println(MyWebUtil.getCurrentUser().getId());
-        return subjectRepo.findByUserId(MyWebUtil.getCurrentUser().getId(),pageable);
+        return subjectRepo.findByUserIdAndIsDrop(MyWebUtil.getCurrentUser().getId(), false, pageable);
     }
 
     public void del(Long id) {
-        subjectRepo.delete(id);
+        Subject subject = subjectRepo.findOne(id);
+        subject.setDrop(true);
+        subjectRepo.save(subject);
     }
 
     public Page<Subject> findAll(Pageable pageable) {
         Page<Subject> page = subjectRepo.findAll(pageable);
         return page;
     }
+
 }
