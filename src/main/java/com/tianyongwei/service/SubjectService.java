@@ -46,4 +46,10 @@ public class SubjectService {
         return page;
     }
 
+    public void saveEdit(Long id, String name, String intro) {
+        Subject subject = subjectRepo.findOne(id);
+        subject.setName(name);
+        subject.setIntro(intro);
+        subjectRepo.saveAndFlush(subject);
+    }
 }

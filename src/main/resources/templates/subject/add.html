@@ -20,7 +20,7 @@
             <label for="exampleFormControlTextarea1">主题简介</label>
             <textarea v-model="intro" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="请输入主题简介...(300字以内)"></textarea>
           </div>
-          <button v-on:click="addSubject" type="button" class="btn btn-primary btn-sm">提交</button>
+          <button @click="addSubject" type="button" class="btn btn-primary btn-sm">提交</button>
         </form>
         <div v-if="messageShow" class="alert alert-success mt-2" role="alert">
           {{message}}
@@ -48,6 +48,7 @@ var app = new Vue({
         if(response.body.success) {
             this.messageShow = true;
             this.message = response.body.msg;
+            window.location.href = '/subject/list'
         } else {
             this.messageShow = true;
             this.message = response.body.msg;

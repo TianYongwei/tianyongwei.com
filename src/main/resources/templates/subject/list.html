@@ -10,7 +10,7 @@
         <botton class="navbar-brand">主题列表</botton>
         <a href="/subject/add" class="btn btn-warning btn-sm">新建主题</a>
       </nav>
-      <div v-if="subjects.content == 0" class="text-secondary">
+      <div v-if="subjects.content == 0" class="text-secondary border-top">
         本页暂无专题
       </div>
       <div class="card" v-for="subject in subjects.content">
@@ -27,7 +27,7 @@
             </button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#" data-toggle="modal" :data-target="'#delModal'+subject.id">删除</a>
-              <a class="dropdown-item" href="#" data-toggle="modal" :data-target="'#editModal'+subject.id">编辑</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" :data-target="'#editModal'+subject.id" @click="editSubject(subject);">编辑</a>
             </div>
           </div>
         </div>
@@ -66,17 +66,17 @@
                 <form>
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">专题名称:</label>
-                    <input type="text" class="form-control" id="recipient-name" :value="subject.name">
+                    <input type="text" class="form-control" id="recipient-name" v-model="editingSubject.name">
                   </div>
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">专题简介:</label>
-                    <textarea class="form-control" id="message-text" :value="subject.intro"></textarea>
+                    <textarea class="form-control" id="message-text" v-model="editingSubject.intro"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary btn-sm" @click="saveEdit(subject.id)">保存</button>
+                <button type="button" class="btn btn-primary btn-sm" @click="saveEdit(subject)">保存</button>
               </div>
             </div>
           </div>
@@ -111,9 +111,9 @@ var app = new Vue({
     subjects:{},
     page: 0,
     size: 2,
-    pageAll:'',
     message:'',
-    messageShow:false
+    messageShow:false,
+    editingSubject:{}
   },
   created: function() {
       this.$http.post('/subject/list', {
@@ -178,6 +178,32 @@ var app = new Vue({
             this.successShow = false;
             this.message = '网络异常'
         });
+    },
+    editSubject: function (subject) {
+        this.editingSubject = subject;
+    },
+    saveEdit: function (subject) {
+      this.$http.post('/subject/saveEdit', {
+          id: this.editingSubject.id,
+          name:this.editingSubject.name,
+          intro:this.editingSubject.intro
+      }, {emulateJSON: true}).then(response => {
+          $('#editModal'+subject.id).modal('hide');
+          console.log(response.body)
+          if(response.body.success) {
+              this.messageShow = true;
+              this.message = response.body.msg;
+              $('.alert').show();
+              $('.alert').alert();
+          } else {
+              this.messageShow = true;
+              this.message = response.body.msg;
+          }
+      }, response => {
+          this.errorShow = true;
+          this.successShow = false;
+          this.message = '网络异常'
+      });
     }
   }
 })

@@ -58,4 +58,12 @@ public class SubjectController  extends BaseController {
         subjectService.del(id);
         return renderSuccess("删除成功！");
     }
+
+    @RequestMapping(value = "saveEdit",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult saveEdit(@RequestParam Long id,@RequestParam String name, @RequestParam String intro) {
+        subjectService.saveEdit(id,name,intro);
+        return renderSuccess("编辑成功");
+
+    }
 }
