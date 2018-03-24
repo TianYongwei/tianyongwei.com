@@ -4,35 +4,133 @@
 <body>
 <div class="container">
   <div th:replace="fragment/navbar"></div>
-  <div class="row" style="margin-top:150px;">
+  <div class="row" style="margin-top:150px;" id="app">
     <div class="col-md-6 offset-md-3 border rounded">
       <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="#">主题导航</a>
+        <a class="navbar-brand">主题导航</a>
+        <botton class="btn btn-warning btn-sm">新建导航</botton>
       </nav>
-
       <div style="padding-bottom:15px;">
-        <button type="button" class="btn btn-primary btn-sm">Primary <span class="badge badge-light">4</span></button>
-        <button type="button" class="btn btn-primary btn-sm">Primary <span class="badge badge-light">4</span></button>
-        <button type="button" class="btn btn-primary btn-sm">Primary</button>
-        <button type="button" class="btn btn-link">Link</button>
-        <button type="button" class="btn btn-link">Link</button>
-        <button type="button" class="btn btn-link">Link</button>
-        <div class="dropdown">
-          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button <span class="badge badge-light">4</span>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+        <button v-for="" type="button" class="btn btn-link">Link</button>
+      </div>
+
+      <!---->
+      <!-- Modal -->
+      <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">新建导航</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">导航名称:</label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="title">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">导航链接:</label>
+                  <textarea class="form-control" id="message-text" v-model="url"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary btn-sm" @click="add">保存</button>
+            </div>
           </div>
         </div>
-      </div>
+      </div><!-- Modal -->
+      <!---->
     </div>
   </div>
 </div>
 <script>
-
+    var app = new Vue({
+        el: '#app',
+        data: {
+            url:'',
+            title:'',
+            page: 0,
+            size: 2,
+            message:'',
+            messageShow:false
+        },
+        created: function() {
+        },
+        methods: {
+            add: function () {
+                this.$http.post('/na', {
+                    page:pagenum,
+                    size:this.size
+                }, {emulateJSON: true}).then(response => {
+                    console.log(response.body)
+                    if(response.body.success) {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                    } else {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                    }
+                }, response => {
+                    this.messageShow = false;
+                    this.message = '网络异常'
+                });
+            },
+            del: function (subject) {
+                this.$http.post('/subject/del', {
+                    id: subject.id
+                }, {emulateJSON: true}).then(response => {
+                    console.log(response.body)
+                    if(response.body.success) {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                        $('#delModal'+subject.id).modal('hide');
+                        var index = this.subjects.content.indexOf(subject);
+                        if (index !== -1) this.subjects.content.splice(index, 1);
+                        $('.alert').show();
+                        $('.alert').alert();
+                    } else {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                    }
+                }, response => {
+                    this.errorShow = true;
+                    this.successShow = false;
+                    this.message = '网络异常'
+                });
+            },
+            editSubject: function (subject) {
+                this.editingSubject = subject;
+            },
+            saveEdit: function (subject) {
+                this.$http.post('/subject/saveEdit', {
+                    id: this.editingSubject.id,
+                    name:this.editingSubject.name,
+                    intro:this.editingSubject.intro
+                }, {emulateJSON: true}).then(response => {
+                    $('#editModal'+subject.id).modal('hide');
+                    console.log(response.body)
+                    if(response.body.success) {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                        $('.alert').show();
+                        $('.alert').alert();
+                    } else {
+                        this.messageShow = true;
+                        this.message = response.body.msg;
+                    }
+                }, response => {
+                    this.errorShow = true;
+                    this.successShow = false;
+                    this.message = '网络异常'
+                });
+            }
+        }
+    })
 </script>
 </body>
 </html>

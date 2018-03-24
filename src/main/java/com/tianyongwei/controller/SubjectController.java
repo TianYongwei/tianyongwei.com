@@ -2,6 +2,7 @@ package com.tianyongwei.controller;
 
 import com.tianyongwei.config.MyWebUtil;
 import com.tianyongwei.entity.core.Subject;
+import com.tianyongwei.repo.SubjectRepo;
 import com.tianyongwei.service.SubjectService;
 import com.tianyongwei.utils.BaseController;
 import com.tianyongwei.utils.JsonResult;
@@ -24,6 +25,9 @@ public class SubjectController  extends BaseController {
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private SubjectRepo subjectRepo;
 
     @RequestMapping("/list")
     public String list () {
@@ -55,6 +59,10 @@ public class SubjectController  extends BaseController {
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult del(@RequestParam Long id) {
+        Subject subject = subjectRepo.findOne(id);
+        if(subject == null || MyWebUtil.getCurrentUser().getId() != subject.getUserId()) {
+            return renderNopermission();
+        }
         subjectService.del(id);
         return renderSuccess("删除成功！");
     }
@@ -62,6 +70,10 @@ public class SubjectController  extends BaseController {
     @RequestMapping(value = "saveEdit",method = RequestMethod.POST)
     @ResponseBody
     public JsonResult saveEdit(@RequestParam Long id,@RequestParam String name, @RequestParam String intro) {
+        Subject subject = subjectRepo.findOne(id);
+        if(subject == null || MyWebUtil.getCurrentUser().getId() != subject.getUserId()) {
+            return renderNopermission();
+        }
         subjectService.saveEdit(id,name,intro);
         return renderSuccess("编辑成功");
 

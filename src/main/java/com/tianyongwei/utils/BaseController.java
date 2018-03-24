@@ -72,5 +72,16 @@ public class BaseController {
         result.setObj(obj);
         return result;
     }
+
+    /**
+     * 渲染成功数据（带信息和数据）
+     *
+     * @param obj 需要返回的对象
+     * @return result
+     */
+    protected JsonResult renderNopermission() {
+        JsonResult result = renderError("no permission");
+        return result;
+    }
 }
 

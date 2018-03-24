@@ -18,8 +18,18 @@ public class Navigation extends BaseEntity {
 
     private Long viewCount;
 
+    private Long rank;
+
     //是否具有RSS功能
     private Boolean isRss;
+
+    public Long getRank() {
+        return rank;
+    }
+
+    public void setRank(Long rank) {
+        this.rank = rank;
+    }
 
     public Long getUserId() {
         return userId;
