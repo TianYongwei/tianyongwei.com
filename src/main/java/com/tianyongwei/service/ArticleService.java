@@ -28,4 +28,22 @@ public class ArticleService {
         article.setDrop(true);
         articleRepo.saveAndFlush(article);
     }
+
+    public Article saveEdit(Long id, String title, String content) {
+        Article article = articleRepo.findOne(id);
+        article.setTitle(title);
+        article.setContent(content);
+        article = articleRepo.saveAndFlush(article);
+        return article;
+    }
+
+    public Article add(Long subjectId, String title, String content) {
+        Article article = new Article();
+        article.setSubjectId(subjectId);
+        article.setTitle(title);
+        article.setContent(content);
+        article = articleRepo.saveAndFlush(article);
+        return article;
+
+    }
 }
