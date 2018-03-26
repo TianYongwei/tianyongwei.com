@@ -1,42 +1,54 @@
 package com.tianyongwei.controller;
 
 import com.tianyongwei.entity.core.Article;
-import com.tianyongwei.repo.ArticleRepo;
+import com.tianyongwei.service.ArticleService;
 import com.tianyongwei.utils.BaseController;
+import com.tianyongwei.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/article")
 public class ArticleController extends BaseController {
 
     @Autowired
-    private ArticleRepo articleRepo;
+    private ArticleService articleService;
 
-    @RequestMapping("/list")
-    public String list () {
+    @RequestMapping("/list/subject/{subjectId}")
+    public String list (@PathVariable Long subjectId, Model model) {
+        List<Article> articles = articleService.myArticles(subjectId);
+        model.addAttribute("articles",articles);
         return "article/list";
     }
 
-    @RequestMapping("/read")
-    public String read() {
+    @RequestMapping("/read/{articleId}")
+    public String read(Model model,@PathVariable Long articleId) {
+        Article article = articleService.articleInfo(articleId);
+        model.addAttribute("article",article);
         return "article/read";
     }
 
-    @RequestMapping("/edit")
-    public String edit() {
+    @RequestMapping(value = "/del",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult del(@RequestParam Long id) {
+        articleService.del(id);
+        return renderSuccess();
+    }
+
+    @RequestMapping("/edit/{articleId}")
+    public String edit(@PathVariable Long articleId,Model model) {
+        model.addAttribute("articleId",articleId);
         return "article/edit";
     }
 
-    @RequestMapping("/add/{title}")
-    public String addArticle(@PathVariable String title) {
-        Article a = new Article();
-        a.setTitle(title);
-        a = articleRepo.save(a);
-        return a.getId() + ":" + a.getTitle();
+
+    @RequestMapping(value = "/info/{articleId}", method = RequestMethod.POST)
+    public JsonResult info(@PathVariable Long articleId) {
+        Article article = articleService.articleInfo(articleId);
+        return renderSuccess(article);
     }
-
-
 }
