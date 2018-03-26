@@ -10,6 +10,8 @@ import javax.persistence.Table;
 public class Navigation extends BaseEntity {
     private Long userId;
 
+    private Long subjectId;
+
     private String title;
 
     private String url;
@@ -22,6 +24,14 @@ public class Navigation extends BaseEntity {
 
     //是否具有RSS功能
     private Boolean isRss;
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
 
     public Long getRank() {
         return rank;
