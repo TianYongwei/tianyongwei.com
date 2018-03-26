@@ -68,4 +68,11 @@ public class NavController extends BaseController {
     navigationService.del(id);
     return renderSuccess();
   }
+
+  @RequestMapping(value = "/saveEdit",method = RequestMethod.POST)
+  @ResponseBody
+  public JsonResult saveEdit(@RequestParam Long id ,@RequestParam String title ,@RequestParam String url){
+    Navigation navigation = navigationService.saveEdit(id,title,url);
+    return renderSuccess(navigation);
+  }
 }

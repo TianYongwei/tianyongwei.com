@@ -8,7 +8,7 @@
     <div class="col-md-6 offset-md-3 border rounded">
       <nav class="navbar navbar-light">
         <a class="navbar-brand" th:text="'主题导航（' + ${subject.name} + '）'" th:attr="subjectId=${subject.id}" id="subjectId">主题导航</a>
-        <a role="botton" th:href="'/nav/edit/subject/'+${subject.id}" class="btn btn-warning btn-sm">编辑</a>
+        <a role="botton" th:href="'/nav/edit/subject/'+${subject.id}" class="btn btn-warning btn-sm">进入编辑</a>
       </nav>
       <a v-for="nav in navs" :href="nav.url" target="_blank" class="btn btn-primary btn-sm m-1" role="button">{{nav.title}}</a>
     </div>

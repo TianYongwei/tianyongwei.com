@@ -33,4 +33,12 @@ public class NavigationService {
     public List<Navigation> getNavListBySubjectId(Long subjectId) {
         return navigationRepo.findByUserIdAndSubjectIdAndIsDrop(MyWebUtil.getCurrentUser().getId(),subjectId, false);
     }
+
+    public Navigation saveEdit(Long id, String title, String url) {
+        Navigation navigation = navigationRepo.findOne(id);
+        navigation.setTitle(title);
+        navigation.setUrl(url);
+        navigation = navigationRepo.saveAndFlush(navigation);
+        return navigation;
+    }
 }
