@@ -7,150 +7,23 @@
   <div class="row" style="margin-top:150px;">
     <div class="col-md-12 offset-md-0 border rounded">
       <nav class="navbar navbar-light border-bottom">
-        <a class="navbar-brand" href="#">主题-卡片-编辑模式</a>
+        <a class="navbar-brand" href="#">主题-卡片-只读模式</a>
         <div>
           <div class="custom-control custom-checkbox d-inline">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
             <label class="custom-control-label text-muted font-weight-light" for="customCheck1"><small>检测模式</small></label>
           </div>
-          <!--<a href="#" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">添加card</a>-->
+          <a th:href="'/card/edit/subject/'+${subjectId}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">进入编辑</a>
         </div>
       </nav>
 
       <div id="app" style="padding-bottom:15px;padding-top:15px;" class="d-flex flex-wrap">
-        <div @click="show = !show" class="card text-center rounded" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-            <!--Building an App-->
-            <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-              <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-              <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-            <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div th:each="card:${cards}" class="card text-center rounded" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
+          <div class="card-body bg-primary text-white">
+            <p class="card-text" th:text="${card.question}">正面：xxx</p>
           </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-primary text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
-          </div><!--cardbody-end-->
-        </div><!--card-end-->
-        <div @click="show = !show" class="card text-center" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
-          <!--<div class="card-header bg-primary text-white border-bottom-0 d-flex justify-content-between">-->
-          <!--Building an App-->
-          <!--<div class="btn-group float-right" role="group" aria-label="Basic example">-->
-          <!--<a href="#" class="btn btn-warning btn-sm">正</a>-->
-          <!--<a href="#" class="btn btn-warning btn-sm">反</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <div class="card-body bg-warning text-white" v-if="show">
-            <p class="card-text">正面：Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div><!--cardbody-end-->
-          <div class="card-body" v-if="!show">
-            <p class="card-text">反面：/* 可以设置不同的进入和离开动画 *//</p>
+          <div class="card-body">
+            <p class="card-text" th:text="${card.answer}">反面：xxx</p>
           </div><!--cardbody-end-->
         </div><!--card-end-->
       </div>

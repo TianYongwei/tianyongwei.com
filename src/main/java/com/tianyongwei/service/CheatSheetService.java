@@ -1,5 +1,8 @@
 package com.tianyongwei.service;
 
-public interface CheatSheetService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class CheatSheetService {
 
 }

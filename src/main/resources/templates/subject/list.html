@@ -19,7 +19,7 @@
           <p class="card-text">{{subject.intro}}</p>
           <a :href="'/nav/read/subject/'+subject.id" class="btn btn-warning btn-sm">导航</a>
           <a href="/cheat/read" class="btn btn-warning btn-sm">速查</a>
-          <a href="/card/read" class="btn btn-warning btn-sm">卡片</a>
+          <a :href="'/card/read/subject/'+subject.id" class="btn btn-warning btn-sm">卡片</a>
           <a :href="'/article/list/subject/'+subject.id" class="btn btn-warning btn-sm">文章</a>
           <div class="btn-group float-right">
             <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
