@@ -1,7 +1,9 @@
 package com.tianyongwei.controller;
 
 import com.tianyongwei.entity.core.Article;
+import com.tianyongwei.entity.core.Subject;
 import com.tianyongwei.service.ArticleService;
+import com.tianyongwei.service.SubjectService;
 import com.tianyongwei.utils.BaseController;
 import com.tianyongwei.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
@@ -18,16 +21,22 @@ public class ArticleController extends BaseController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private SubjectService subjectService;
+
 
     @RequestMapping("/list/subject/{subjectId}")
     public String list (@PathVariable Long subjectId, Model model) {
         List<Article> articles = articleService.myArticles(subjectId);
+        Subject subject = subjectService.subjectInfo(subjectId);
         model.addAttribute("articles",articles);
+        model.addAttribute("subject",subject);
         return "article/list";
     }
 
-    @RequestMapping("/add")
-    public String add() {
+    @RequestMapping("/add/subject/{subjectId}")
+    public String add(@PathVariable Long subjectId, Model model) {
+        model.addAttribute("subjectId",subjectId);
         return "article/add";
     }
 
@@ -65,9 +74,10 @@ public class ArticleController extends BaseController {
         return renderSuccess(article);
     }
 
-    @RequestMapping(value = "/info/{articleId}", method = RequestMethod.POST)
-    public JsonResult info(@PathVariable Long articleId) {
-        Article article = articleService.articleInfo(articleId);
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult info(@RequestParam Long id) {
+        Article article = articleService.articleInfo(id);
         return renderSuccess(article);
     }
 }

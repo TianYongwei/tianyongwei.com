@@ -49,4 +49,8 @@ public class SubjectService {
         subject.setIntro(intro);
         subjectRepo.saveAndFlush(subject);
     }
+
+    public Subject subjectInfo(Long subjectId) {
+        return subjectRepo.findOne(subjectId);
+    }
 }

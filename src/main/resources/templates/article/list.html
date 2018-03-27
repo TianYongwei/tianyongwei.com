@@ -4,45 +4,25 @@
 <body>
 <div class="container">
   <div th:replace="fragment/navbar"></div>
-  <div class="row" style="margin-top:150px;">
+  <div class="row" style="margin-top:150px;" id="app">
     <div class="col-md-12 offset-md-0 border rounded">
       <nav class="navbar navbar-light border-bottom">
         <a class="navbar-brand" href="#">主题-文章-文章列表</a>
-        <a href="/article/add" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">添加文章</a>
+        <a th:href="'/article/add/subject/'+${subject.id}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">添加文章</a>
       </nav>
 
       <div style="padding-bottom:15px;padding-top:15px;">
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <ul class="list-group">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisisfacilisisfacilisisfacilisisfacilisisfacilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
+              <li th:each="article:${articles}" class="list-group-item"><a  th:text="${article.title}" th:href="'/article/read/'+${article.id}"></a></li>
             </ul>
             <br>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<script>
-
-</script>
 </body>
 </html>

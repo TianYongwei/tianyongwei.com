@@ -42,6 +42,7 @@ public class ArticleService {
         article.setSubjectId(subjectId);
         article.setTitle(title);
         article.setContent(content);
+        article.setUserId(MyWebUtil.getCurrentUser().getId());
         article = articleRepo.saveAndFlush(article);
         return article;
 
