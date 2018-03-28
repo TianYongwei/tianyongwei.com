@@ -15,9 +15,9 @@ public class CheatSheet extends BaseEntity {
     //样式主题
     private Long themeId;
 
-    private String question;
+    private String title;
 
-    private String answer;
+    private String content;
 
     private Long rank;
 
@@ -49,20 +49,20 @@ public class CheatSheet extends BaseEntity {
         this.themeId = themeId;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getTitle() {
+        return title;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getContent() {
+        return content;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Long getRank() {
