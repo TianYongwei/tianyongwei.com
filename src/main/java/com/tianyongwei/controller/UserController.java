@@ -164,7 +164,7 @@ public class UserController extends BaseController{
             User sessionUser = new User(user.getId());
             sessionUser.setUsername(user.getUsername());
             MyWebUtil.saveUser2Session(sessionUser);
-            return renderSuccess("登录成功");
+            return renderSuccess("登录成功",MyWebUtil.getSession().getAttribute("BlockedURI"));
         } else {
             return renderError("账号或密码错误");
         }

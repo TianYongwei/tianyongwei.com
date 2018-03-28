@@ -33,6 +33,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
          * 4、拦截需要登录并且身份对应（todo）
          */
         if(MyWebUtil.getCurrentUser() == null) {
+            request.getSession().setAttribute("BlockedURI",request.getRequestURI());
             response.sendRedirect("/user/signin");
             return false;
         }

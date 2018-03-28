@@ -50,7 +50,11 @@ var app = new Vue({
             this.successShow = true;
             this.errorShow = false;
             this.message = response.body.msg;
-            window.location.href="/";
+            if(response.body.obj) {
+              window.location.href=response.body.obj;
+            } else {
+              window.location.href="/";
+            }
         } else {
             this.errorShow = true;
             this.successShow = false;
