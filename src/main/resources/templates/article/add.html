@@ -4,7 +4,7 @@
 <body>
 <div class="container">
   <div th:replace="fragment/navbar"></div>
-  <div class="row" id="app">
+  <div class="row" id="app" v-cloak>
     <div id="subjectId" th:attr="subjectId=${subjectId}" class="d-none"></div>
     <div class="col-md-12 offset-md-0 border rounded">
       <nav class="navbar navbar-light border-bottom">

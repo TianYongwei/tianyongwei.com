@@ -17,7 +17,7 @@
         </div>
       </nav>
 
-      <div id="app" style="padding-bottom:15px;padding-top:15px;" class="d-flex flex-wrap">
+      <div id="app" v-cloak style="padding-bottom:15px;padding-top:15px;" class="d-flex flex-wrap">
         <div th:each="card:${cards}" class="card text-center rounded" style="max-width:277px;min-width:277px;max-height:167px;min-height:167px;">
           <div class="card-body bg-primary text-white">
             <p class="card-text" th:text="${card.question}">正面：xxx</p>

@@ -2,13 +2,10 @@
 <!--suppress ALL -->
 <html lang="en">
 <head th:replace="fragment/headTag"></head>
-<style>
-  [v-cloak] { display: none }
-</style>
 <body>
 <div class="container">
   <div th:replace="fragment/navbar"></div>
-  <div v-cloak class="row" style="margin-top:150px;" id="app">
+  <div class="row" style="margin-top:150px;" id="app" v-cloak>
     <div class="col-md-12 offset-md-0 border rounded">
       <nav class="navbar navbar-light border-bottom">
         <a class="navbar-brand text-secondary" href="#" th:text="'主题速查（' + ${subject.name} + '）'" th:attr="subjectId=${subject.id}" id="subjectId">主题速查</a>
