@@ -15,3 +15,6 @@ http://blog.csdn.net/u012852374/article/details/78601608
 - [ ] 整体设计语言规范
 - [x] 完成文章编辑框大小优化（优先选择小尺寸）
 - [x] vue.js 的闪烁问题(v-cloak)
+
+> 运维
+- [ ] 使用CI工具准备发布
