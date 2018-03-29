@@ -10,14 +10,14 @@
         <a class="navbar-brand" href="#" th:text="'主题速查（' + ${subject.name} + '）'" th:attr="subjectId=${subject.id}" id="subjectId">主题速查</a>
         <a th:href="'/cheat/edit/subject/'+${subject.id}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">进入编辑</a>
       </nav>
-      <div style="padding-bottom:15px;padding-top:15px;" class="d-flex justify-content-between align-items-top">
-        <div v-for="cheat in cheats" class="card text-center" style="width:360px;">
+      <div style="padding-bottom:15px;padding-top:15px;" class="d-flex flex-wrap">
+        <div v-for="cheat in cheats" class="card text-center" style="width:364px;">
           <div class="card-header bg-primary text-white border-bottom-0">
             {{cheat.title}}
           </div>
           <div class="card-body">
             <ul class="list-group">
-              <li v-for="item in cheat.content" class="list-group-item d-flex justify-content-between align-items-center">
+              <li v-for="item in cheat.content" class="list-group-item d-flex justify-content-between">
                 <span>{{item.key}}</span>
                 <span>{{item.value}}</span>
               </li>
@@ -37,7 +37,6 @@
       messageShow:false,
     },
     created: function() {
-      console.log(123)
       this.$http.post('/cheat/list', {
         subjectId:$('#subjectId').attr("subjectId"),
       }, {emulateJSON: true}).then(response => {

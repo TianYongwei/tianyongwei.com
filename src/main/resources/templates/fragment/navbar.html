@@ -55,6 +55,10 @@
           if(response.body.success) {
               this.isLogin = true;
               this.user = response.body.obj;
+              // if
+            if(window.location.href.indexOf('/user/signin') != -1) {
+              window.location.href = '/';
+            }
           } else {
               this.isLogin = false;
           }
