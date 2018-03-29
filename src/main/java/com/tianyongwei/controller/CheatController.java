@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -25,10 +26,9 @@ public class CheatController extends BaseController {
 
   @RequestMapping("/read/subject/{subjectId}")
   public String read(@PathVariable Long subjectId, Model model) {
+    System.out.println(new Date());
     Subject subject = subjectService.subjectInfo(subjectId);
-    List<CheatSheet> cheatSheets = cheatSheetService.myCheats(subjectId);
     model.addAttribute("subject",subject);
-    model.addAttribute("cheatSheets",cheatSheets);
     return "cheat/read";
   }
 

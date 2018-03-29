@@ -4,22 +4,22 @@
 <body>
 <div class="container">
   <div th:replace="fragment/navbar"></div>
-  <div class="row" style="margin-top:150px;">
+  <div class="row" style="margin-top:150px;" id="app">
     <div class="col-md-12 offset-md-0 border rounded">
       <nav class="navbar navbar-light border-bottom">
         <a class="navbar-brand" href="#" th:text="'主题速查（' + ${subject.name} + '）'" th:attr="subjectId=${subject.id}" id="subjectId">主题速查</a>
-        <a th:href="'/cheat/edit/subject/'+${subjectId}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">进入编辑</a>
+        <a th:href="'/cheat/edit/subject/'+${subject.id}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">进入编辑</a>
       </nav>
       <div style="padding-bottom:15px;padding-top:15px;" class="d-flex justify-content-between align-items-top">
-        <div class="card text-center" style="width:360px;" th:each="cheat:${cheatSheets}">
-          <div class="card-header bg-primary text-white border-bottom-0" th:text="${cheat.title}">
-            Building an App
+        <div v-for="cheat in cheats" class="card text-center" style="width:360px;">
+          <div class="card-header bg-primary text-white border-bottom-0">
+            {{cheat.title}}
           </div>
           <div class="card-body">
             <ul class="list-group">
-              <li th:each="item:${cheat.content}" class="list-group-item d-flex justify-content-between align-items-center">
-                <span>Cras justo odio</span>
-                <span>Cras justo odio</span>
+              <li v-for="item in cheat.content" class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{item.key}}</span>
+                <span>{{item.value}}</span>
               </li>
             </ul>
           </div><!--cardbody-end-->
@@ -28,5 +28,37 @@
     </div>
   </div>
 </div>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      cheats:[],
+      message:'',
+      messageShow:false,
+    },
+    created: function() {
+      console.log(123)
+      this.$http.post('/cheat/list', {
+        subjectId:$('#subjectId').attr("subjectId"),
+      }, {emulateJSON: true}).then(response => {
+        console.log(response.body.obj)
+        if(response.body.success) {
+          this.messageShow = true;
+          this.message = response.body.msg;
+          this.cheats = response.body.obj;
+          for (var i=0,length = this.cheats.length; i < length; i++) {
+            this.cheats[i].content = JSON.parse(this.cheats[i].content);
+          }
+        } else {
+          this.messageShow = true;
+          this.message = response.body.msg;
+        }
+      }, response => {
+        this.messageShow = false;
+        this.message = '网络异常'
+      });
+    }
+  })
+</script>
 </body>
 </html>
