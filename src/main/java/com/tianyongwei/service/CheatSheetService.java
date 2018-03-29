@@ -26,9 +26,10 @@ public class CheatSheetService {
   }
 
 
-  public CheatSheet add(String title, String content) {
+  public CheatSheet add(Long subjectId, String title, String content) {
     CheatSheet cheatSheet = new CheatSheet();
     cheatSheet.setTitle(title);
+    cheatSheet.setSubjectId(subjectId);
     cheatSheet.setContent(content);
     cheatSheet.setUserId(MyWebUtil.getCurrentUser().getId());
     cheatSheet = cheatSheetRepo.saveAndFlush(cheatSheet);

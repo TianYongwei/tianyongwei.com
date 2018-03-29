@@ -55,8 +55,8 @@ public class CheatController extends BaseController {
 
   @RequestMapping(value = "/add",method = RequestMethod.POST)
   @ResponseBody
-  public JsonResult add(@RequestParam String title, @RequestParam String content) {
-    CheatSheet cheatSheet = cheatSheetService.add(title,content);
+  public JsonResult add(@RequestParam Long subjectId, @RequestParam String title, @RequestParam String content) {
+    CheatSheet cheatSheet = cheatSheetService.add(subjectId,title,content);
     return renderSuccess(cheatSheet);
   }
 
