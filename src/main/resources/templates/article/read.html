@@ -11,8 +11,8 @@
         <a th:href="'/article/edit/'+${article.id}" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;">编辑</a>
       </nav>
       <div style="padding-bottom:15px;padding-top:15px;">
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
+        <div class="row justify-content-center">
+          <div class="col-md-5">
             <h2 style="padding-bottom:10px;color: #666666;font-family: Palatino Linotype, Book Antiqua, Palatino, Helvetica, STKaiti, SimSun, serif;" class="border-bottom" th:text="${article.title}">AlphaGo Zero 和强人工智能</h2>
             <div class="zhengwen mt-5">
               <p class="text-justify"  style="font-size: 18px;line-height: 1.8;font-family: lucida grande, lucida sans unicode, lucida, helvetica, Hiragino Sans GB, Microsoft YaHei,WenQuanYi Micro Hei, sans-serif;, Arial, Helvetica, sans-serif ,simsun" th:text="${article.content}">

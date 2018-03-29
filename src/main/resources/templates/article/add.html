@@ -12,16 +12,14 @@
         <a href="#" class="btn btn-danger btn-sm d-inline" style="margin-left:20px;" @click="add">保存</a>
       </nav>
       <div style="padding-bottom:15px;padding-top:15px;">
-        <div class="row" style="height:50px;">
-          <div class="col-md-2"></div>
-          <div class="col-md-8 p-0">
+        <div class="row justify-content-center" style="height:50px;">
+          <div class="col-md-4 p-0">
             <input class="form-control form-control-lg rounded-0" type="text" placeholder="输入标题..." v-model="title">
           </div>
         </div>
         <br>
-        <div class="row" style="height:500px;">
-          <div class="col-md-2"></div>
-          <div class="col-md-8 p-0">
+        <div class="row justify-content-center" style="height:500px;">
+          <div class="col-md-4 p-0">
             <!--editor-->
             <div id="editor">
               <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="100" v-model="content"></textarea>
