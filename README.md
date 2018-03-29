@@ -1,6 +1,6 @@
 #### TODO
 
-功能
+> 功能
 - [x] 基本登录权限控制（基于拦截器），实现某些功能只能登录才能使用
 http://blog.csdn.net/houxuehan/article/details/51768982
 http://blog.csdn.net/u012852374/article/details/78601608
@@ -8,7 +8,7 @@ http://blog.csdn.net/u012852374/article/details/78601608
 - [ ] 完善表单校验
 - [ ] 暂时使用"琐碎代码"完成高级权限控制
 
-样式
+> 样式
 - [ ] cheatsheet flex 布局调整，现在多了会堆积
 - [ ] 首页样式调整
 - [ ] 整体色彩调整
