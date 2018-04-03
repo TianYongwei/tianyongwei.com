@@ -18,3 +18,9 @@ http://blog.csdn.net/u012852374/article/details/78601608
 
 > 运维
 - [ ] 使用CI工具准备发布
+
+> 广告
+google
+jd
+alimama
+Carbon Ads
