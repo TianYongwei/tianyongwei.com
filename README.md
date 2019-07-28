@@ -1,3 +1,11 @@
+#### Introduce
+
+这个项目希望能通过以下四种工具增强自学者的学习效果。
+- flash card（记忆卡）
+- navgation（导航链接）
+- article（文章）
+- cheatsheet（速查表）
+
 #### TODO
 
 > 功能
